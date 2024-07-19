@@ -236,5 +236,5 @@ A *dot-dat* file specifies the starting mesh topology, material properties of th
 
 Other *dot-dat* files may contain some data fields outside of `try.dat` populated spaces, such data fields are not read thus can be ignored.
 ## Further Information
-[1]: [PARALLEL FINITE ELEMENT COMPUTATIONS B.H.V. Topping and A.I. Khan Chapter 5](https://www.saxe-coburg.co.uk/pubs/descrip/btak.htm)
+[[1](https://www.saxe-coburg.co.uk/pubs/descrip/btak.htm)]: PARALLEL FINITE ELEMENT COMPUTATIONS B.H.V. Topping and A.I. Khan - Chapter 5
 
