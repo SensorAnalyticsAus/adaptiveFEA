@@ -1,0 +1,27 @@
+      implicit double precision (a-h,o-z)                               
+      logical triang,cable,numyes,autoscale,nuele,sepele,string
+     . ,err, stres,dec, isoyes
+      character *32 titel
+      character *12 plotfile
+      character  *2 device
+      integer       plotline
+      real sfs
+      common/ a1/ titel                                                 
+      common triang,cable,numyes,autoscale,nuele,string,sepele,
+     .            err, stres, dec, brightness,red,green,blue             
+      common nn,ne,nb,nm,nl,ndime,kt,nt,nstr,nbe,kmax,nmax,iln,sfs,
+     .            nq
+      common/bbb/ cord(25000,3),nod(30000,4),nodl(3000,3),
+     .            nodq(10,5)
+      common/ccc/ mat(20),amat(20,10),dtl(3),dtt(3,3),ang(3),tr(3,3)     
+      common/ddd/ nco(100,4),nc(30),aload(30,3),tcor(25000,2),
+     .errorr(30000), ste(30000,5),aminst,amaxst, ipv, norm,amaxer,aminer
+      common/www/ dt,damp,b,af,cang(3),sang(3)            
+      common/gs/ngs(90),nsnod(90,50)
+      common/red/ redfact, scalefac, shiftx, shifty
+      common/dev/ device
+      common/lin/ plotfile,plotline
+
+      character  *2 calcomp,laser,screen
+      parameter    (screen='s',laser='l',calcomp='c')
+      parameter    (nin=7, nout=8)
