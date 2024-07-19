@@ -1,5 +1,5 @@
 ## About
-Finite Element Analysis (FEA) is a numerical modelling technique for predicting behaviour of solids, fluids, electromagnetic fields, and heat-flows. Adaptive FEA automatically adjusts the density of the mesh to provide more accurate results. It's done by calculating FEA error and using it to alter the mesh density until error is reduced to a tolerable limit. This archive contains programs for adaptive FEA: 
+Finite Element Analysis (FEA) is a numerical modelling technique for predicting behaviour of solids, fluids, electromagnetic fields, and heat-flows. Adaptive FEA automatically adjusts its mesh density to provide more accurate results. It's done by calculating FEA error and using it to alter the mesh density until error is reduced to a tolerable limit. This archive contains the following programs for adaptive FEA: 
 * **femgs1** for carrying out linear 2D FEA
 * **adpgs1** for calculating FEA error and the remeshing parameters
 * **faopgs2** for adaptive unstructured mesh generation
@@ -244,7 +244,7 @@ Other *dot-dat* files may contain some data fields outside of `try.dat` populate
 ## Trouble Shooting
 If **faopgs2**, **femgs1**, or **plotp** fail. 
 * Check **dot-dat** file is conforming to the expected format.
-* Try increasing the `hmin` value in ***adpgs1** to reduce the number of elements in final mesh.
+* Try increasing the `hmin` value in **adpgs1** to reduce the number of elements in final mesh.
 
 ## Further Information
 [[1](https://www.saxe-coburg.co.uk/pubs/descrip/btak.htm)]: PARALLEL FINITE ELEMENT COMPUTATIONS B.H.V. Topping and A.I. Khan - Chapter 5
