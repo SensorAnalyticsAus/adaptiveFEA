@@ -17,7 +17,7 @@ sudo apt install xpdf ghostscript
 ## Install
 ```
 git clone https://github.com/SensorAnalyticsAus/adaptiveFEA.git
-cd cd adaptiveFEA/
+cd adaptiveFEA/
 make distclean
 make all
 make clean
