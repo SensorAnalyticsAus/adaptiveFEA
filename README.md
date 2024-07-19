@@ -20,7 +20,7 @@ make clean
 
 ## Getting Started
 Following steps will complete a cycle of adaptive FEA
-# Plot the initial mesh
+### Plot the initial mesh
 ```
 cd ./run
 cp ../dot-dat/ex61.dat .
@@ -67,7 +67,7 @@ xpdf pltf1.plt.pdf
 ```
 ![ex61.png](/assets/png/ex61.png)
 
-# FEA of the Initial Mesh
+### FEA of the Initial Mesh
 ```
 ../femgs1 
 Enter the input file (.dat assumed)
@@ -94,7 +94,7 @@ iln = 5
 *** The results of FE  are stored in ex61.fem ***
 *** renumbered input data file ex6_.dat generated ***
 ```
-# Adaptive error estimate
+### Adaptive error estimate
 ```
 ../adpgs1 
 Enter the input file (.dat assumed)
@@ -114,7 +114,7 @@ Magnification =   1.4 (hmin =   1.2)
 *** Mesh parameters are in ex61.me 
 *** Adaptivity results are in ex61.adp
 ```
-# Re-mesh with adaptive refinement this time
+### Re-mesh with adaptive refinement this time
 ```
 ../faopgs2 
 Max of 50000 nodes and 70000 elements can be meshed
@@ -136,7 +136,7 @@ Enter [1] if mesh post-processing required
 *** File ex61o.dat with 1600 nodes & 3008 elements has been generated ***
 *** Neural net training data saved in ex61.inf ***
 ```
-# Perform FEA on newly created mesh in ex61o.dat
+### Perform FEA on newly created mesh in ex61o.dat
 ```
 ../femgs1
 Enter the input file (.dat assumed)
@@ -159,7 +159,7 @@ Semi-Band-Width before = 2620
 *** The results of FE  are stored in ex61o.fem ***
 *** renumbered input data file ex61_.dat generated ***
 ```
-# Calculate errors for ex61o.dat mesh
+### Calculate errors for ex61o.dat mesh
 ```
 ../adpgs1 
 Enter the input file (.dat assumed)
@@ -179,13 +179,13 @@ Magnification =  50.2 (hmin =   0.9)
 *** Mesh parameters are in ex61o.me 
 *** Adaptivity results are in ex61o.adp
 ```
-# Copy output mesh, stress, and error files to plotp filenames
+### Copy output mesh, stress, and error files to plotp filenames
 ```
 cp ex62o.dat input.dat
 cp ex62o.str stress.dat
 cp ex61o.err error.dat
 ```
-# Plot the new mesh with say the Sxy (shear stress) overlay
+### Plot the new mesh with say the Sxy (shear stress) overlay
 ```
 ../plotp 
  output device is postscript file pltf*.plt
@@ -231,7 +231,7 @@ xpdf pltf1.plt.pdf
 
 The last step can be repeated to obtain a plot with the error overlay by setting plot element errors or Domain dec? option as 't' and the following option as 'f'.
 
-## dot-dat\ Contains Data Files for Adaptive Finite Element Analysis
+## **dot-dat\** Contains Data Files for Adaptive Finite Element Analysis
 A *dot-dat* file specifies the starting mesh topology, material properties of the structure, boundary conditions, and applied force(s) i.e. load points on the structure. In this regard `try.pdf` contains information for creating custom *dot-dat* files. In such files the columns have to be maintained exactly in the same format as of `try.dat`. For instance the 3rd line of the try *dot-dat* file comprises first two fields of 6 columns i.e. 2 x 6 columns, followed by 9 fields of 5 columns i.e. 9 x 5 columns (a total of 57 vim columns). Each value must be fully contained within its own column. The FORTRAN graphics program `plotp` expect input values strictly being within the specified columns. 
 
 Other *dot-dat* files may contain some data fields outside of `try.dat` populated spaces, such data fields are not read thus can be ignored.
