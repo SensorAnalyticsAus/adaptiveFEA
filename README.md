@@ -61,11 +61,12 @@ Initial Mesh ex61.dat
    4.6354998053636374E-310   0.0000000000000000        0.0000000000000000        0.0000000000000000
 ```
 Convert output plot file to PDF format and view **ex61.dat**:
-![ex61.png](/assets/png/ex61.png)
 ```
 ps2pdf pltf1.plt
 xpdf pltf1.plt.pdf
 ```
+![ex61.png](/assets/png/ex61.png)
+
 # FEA of the Initial Mesh
 ```
 ../femgs1 
@@ -222,11 +223,11 @@ Refined Mesh ex61o.dat Sxy
    
 ```
 Convert to PDF and view **ex61o.dat**:
-![ex61o.png](/assets/png/ex61o.png)
 ```
 ps2pdf pltf1.plt
 xpdf pltf1.plt.pdf
 ```
+![ex61o.png](/assets/png/ex61o.png)
 
 The last step can be repeated to obtain a plot with the error overlay by setting plot element errors or Domain dec? option as 't' and the following option as 'f'.
 
