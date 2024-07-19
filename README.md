@@ -241,9 +241,9 @@ This folder contains sample *dot-dat* files for adaptive FEA. A *dot-dat* file s
 Other *dot-dat* files may contain some data fields outside of `try.dat` populated spaces, such data fields are not read thus can be ignored.
 
 ## Trouble Shooting
-If **faopgs2**, **femgs1, or **plotp** fail. 
+If **faopgs2**, **femgs1**, or **plotp** fail. 
 * Check **dot-dat** file is conforming to the expected format.
-* Try increasing the `hmin` value in ***adpgs1 to reduce the number of elements in final mesh.
+* Try increasing the `hmin` value in ***adpgs1** to reduce the number of elements in final mesh.
 
 ## Further Information
 [[1](https://www.saxe-coburg.co.uk/pubs/descrip/btak.htm)]: PARALLEL FINITE ELEMENT COMPUTATIONS B.H.V. Topping and A.I. Khan - Chapter 5
