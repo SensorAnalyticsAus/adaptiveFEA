@@ -231,7 +231,7 @@ xpdf pltf1.plt.pdf
 
 The last step can be repeated to obtain a plot with the error overlay by setting plot element errors or Domain dec? option as 't' and the following option as 'f'.
 
-## **dot-dat\** Contains Data Files for Adaptive Finite Element Analysis
+## Folder dot-dat/ contains sample data files for adaptive FEA
 A *dot-dat* file specifies the starting mesh topology, material properties of the structure, boundary conditions, and applied force(s) i.e. load points on the structure. In this regard `try.pdf` contains information for creating custom *dot-dat* files. In such files the columns have to be maintained exactly in the same format as of `try.dat`. For instance the 3rd line of the try *dot-dat* file comprises first two fields of 6 columns i.e. 2 x 6 columns, followed by 9 fields of 5 columns i.e. 9 x 5 columns (a total of 57 vim columns). Each value must be fully contained within its own column. The FORTRAN graphics program `plotp` expect input values strictly being within the specified columns. 
 
 Other *dot-dat* files may contain some data fields outside of `try.dat` populated spaces, such data fields are not read thus can be ignored.
