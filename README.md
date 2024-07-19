@@ -222,7 +222,7 @@ Refined Mesh ex61o.dat Sxy
    
 ```
 Convert to PDF and view **ex61o.dat**:
-![ex61o.png](/assests/png/ex61o.png)
+![ex61o.png](/assets/png/ex61o.png)
 ```
 ps2pdf pltf1.plt
 xpdf pltf1.plt.pdf
