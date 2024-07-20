@@ -535,7 +535,7 @@ double dL1,dL2, PER;
 	}
   
 	if(bdn1 >= IIX || en >= JJX){
-	printf("\n ran out of specified memory at nn=%s ne=%s increase IIX or/and JJX \n",bdn1,en);
+	printf("\n ran out of specified memory at nn=%d ne=%d increase IIX or/and JJX \n",bdn1,en);
 	exit(1);
 	}
  
