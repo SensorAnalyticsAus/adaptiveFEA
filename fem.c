@@ -102,6 +102,7 @@ void fpr_defl(void);
 void calc_stress(void);
 void form_D(double v, double e, double d[][3]);
 char* trimwhitespace(char *str);
+void chkf(char *str);
 
 #if T800
 void preliminary_data(void);
@@ -169,7 +170,7 @@ rinput(file_sav);
 
 if(arg_def == 0){
 printf("Guass [1]  JCC [0]\n");
-fgets(buf,90,stdin); sscanf(buf,"%d",&gauss);
+chkf(fgets(buf,90,stdin)); sscanf(buf,"%d",&gauss);
 }else{
 sscanf(argv[2],"%d",&gauss);
 }
@@ -194,7 +195,7 @@ if(ste == NULL)
   
   if(arg_def == 0){
   printf("\n Semi-Band-Width reduction Yes[1] No[0]\n");
-  fgets(buf,90,stdin); sscanf(buf,"%d",&yes_no);
+  chkf(fgets(buf,90,stdin)); sscanf(buf,"%d",&yes_no);
   } else {
   sscanf(argv[3],"%d",&yes_no);
   }
@@ -271,10 +272,10 @@ gets(buf);sscanf(buf,"%d",&opt_proc);
 time(&t2);
 #endif
 
-fprintf(fp2,"\n\n*** Time for analysis = %f min or %d sec ***\n",
+fprintf(fp2,"\n\n*** Time for analysis = %f min or %ld sec ***\n",
        ((float)t2-(float)t1)/60., t2-t1);
 fprintf(fp2,"*** no of iterations = %d ***\n", iter);
-fprintf(stdout,"\n\n*** Time for analysis = %f min or %d sec ***\n",
+fprintf(stdout,"\n\n*** Time for analysis = %f min or %ld sec ***\n",
        ((float)t2-(float)t1)/60., t2-t1);
 fprintf(stdout,"*** no of iterations = %d ***\n", iter);
 
@@ -811,7 +812,7 @@ double x1,y1,z1;
   
 if(arg_def == 0){ 
    printf("Enter the input file (.dat assumed)\n");
-   fgets(file,30,stdin); 
+   chkf(fgets(file,30,stdin)); 
    strcpy(file,trimwhitespace(file)); 
    strcpy(file_sav, file); 
    strcat(file,".dat");
@@ -823,16 +824,16 @@ if(arg_def == 0){
 
    if((fp = fopen(file, "r")) == (FILE *) NULL)
    {printf("cannot open %s\n",file); exit(1);}
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    fputs(buf,stdout);
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%lf%lf",&dt,&damp);
    printf("%f %f \n",dt,damp);
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %d %d %d %d %d %d %d %d %d %d",&nn,&ne,&nb,&nm,&nl,
    &ndime, &nstr, &nbe, &kmax,&nmax, &iln);
 
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d",&nq);
 
 
@@ -847,7 +848,7 @@ if(arg_def == 0){
 
    for(i = 0; i < nn; i++)
    {
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %lf %lf %lf",&n, &x1, &y1,&z1);
    cord[2*i] = x1;
    cord[2*i + 1] = y1;
@@ -859,7 +860,7 @@ if(arg_def == 0){
    {
       for(i = 0; i < ne; i++)
       {
-      fgets(buf,256,fp);
+      chkf(fgets(buf,256,fp));
       sscanf(buf,"%d %d %d %d %d",&n,&nod[4*i + 0],&nod[4*i + 1],
       &nod[4*i + 2],&nod[4*i + 3]);
       }
@@ -871,7 +872,7 @@ if(arg_def == 0){
    {
       for(i = 0; i < nl;i++)
       {
-      fgets(buf,256,fp);
+      chkf(fgets(buf,256,fp));
       }
    }
 
@@ -881,7 +882,7 @@ if(arg_def == 0){
    {
       for(i = 0; i < nq; i++)
       {
-      fgets(buf,256,fp);
+      chkf(fgets(buf,256,fp));
       }
    }
 
@@ -889,7 +890,7 @@ if(arg_def == 0){
 
    for(i = 0; i < nm; i++)
    {
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %d %lf %lf %lf %lf %lf",&n,&mat[i],&amat[i][0],&amat[i][1],
    &amat[i][2],&amat[i][3],&amat[i][4]);
    }
@@ -898,7 +899,7 @@ if(arg_def == 0){
 
    for(i = 0; i < nb; i++)
    {
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %d %d %d",&nco[i][0],&nco[i][1],&nco[i][2],&nco[i][3]);
    }
 
@@ -911,7 +912,7 @@ more:
    iln++;
    i = iln - 1;
 
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %lf %lf %lf",&NCLOAD[i].nc,&NCLOAD[i].aload[0],&NCLOAD[i].aload[1],&NCLOAD[i].aload[2]);
 
    if(NCLOAD[i].nc < nn)
@@ -922,8 +923,8 @@ more:
    {
    for(i = 0; i < nstr; i++)
    {
-   fgets(buf,256,fp);
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
+   chkf(fgets(buf,256,fp));
    }
    }
 fclose(fp);
@@ -1062,6 +1063,13 @@ char* trimwhitespace(char *str)
   end[1] = '\0';
 
   return str;
+}
+
+void chkf(char *str){
+   if( str == NULL){
+     printf("line not read\n");
+     exit(1);
+   }
 }
 
 #if Less

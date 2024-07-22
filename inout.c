@@ -21,6 +21,7 @@ void routput();
 void tri_len(int i,double tL[]);  
 void cabl_len(int i, double *prL); 
 void seglen(double x1,double y1, double x2, double y2, double *pL);   
+void chkf(char *str);
 
 FILE *fp1;
 
@@ -103,22 +104,22 @@ int i,n;
 double val,x1,y1,z1;
 
 
-   fgets(titel,BUFF,fp1);
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(titel,BUFF,fp1));
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%lf%lf",&para1,&para2);
    sscanf(buf,"%lf%lf",&dt,&damp);
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %d %d %d %d %d %d %d %d %d",&nn,&ne,&nb,&nm,&nl,
    &ndime, &nstr, &nbe, &kmax,&nmax, &iln);
 
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d",&nq);
 
 
 
    for(i = 0; i < nn; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %lf %lf %lf",&n, &x1, &y1,&z1);
    val = cord[3*i] = x1;
    val = cord[3*i + 1] = y1;
@@ -131,7 +132,7 @@ double val,x1,y1,z1;
    {
       for(i = 0; i < ne; i++)
       {
-      fgets(buf,BUFF,fp1);
+      chkf(fgets(buf,BUFF,fp1));
       sscanf(buf,"%d %d %d %d %d",&n,&nod[i][0],&nod[i][1],
       &nod[i][2],&nod[i][3]);
       }
@@ -143,7 +144,7 @@ double val,x1,y1,z1;
    {
       for(i = 0; i < nl;i++)
       {
-      fgets(buf,BUFF,fp1);
+      chkf(fgets(buf,BUFF,fp1));
       sscanf(buf,"%d %d %d %d",&n,&nodl[i][0],&nodl[i][1],
       &nodl[i][2]);
       }
@@ -155,7 +156,7 @@ double val,x1,y1,z1;
    {
       for(i = 0; i < nq; i++)
       {
-      fgets(buf,BUFF,fp1);
+      chkf(fgets(buf,BUFF,fp1));
       sscanf(buf,"%d %d %d %d %d %d",&n,&nodq[i][0],&nodq[i][1],
       &nodq[i][2],&nodq[i][3],&nodq[i][4]);
       }
@@ -165,7 +166,7 @@ double val,x1,y1,z1;
 
    for(i = 0; i < nm; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %lf %lf %lf %lf %lf",&n,&mat[i],&amat[i][0],&amat[i][1],
    &amat[i][2],&amat[i][3],&amat[i][4]);
    }
@@ -174,7 +175,7 @@ double val,x1,y1,z1;
 
    for(i = 0; i < nb; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %d %d",&nco[i][0],&nco[i][1],&nco[i][2],&nco[i][3]);
    }
 
@@ -187,7 +188,7 @@ more:
    iln++;
    i = iln - 1;
 
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %lf %lf %lf",&nc[i],&aload[i][0],&aload[i][1],&aload[i][2]);
 
    if(nc[i] < nn)
@@ -198,9 +199,9 @@ more:
    {
    for(i = 0; i < nstr; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d",&ngs[i]);
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %d %d %d %d %d %d",&nsnod[i][0],&nsnod[i][1],
    &nsnod[i][2],&nsnod[i][3],&nsnod[i][4],&nsnod[i][5],&nsnod[i][6],
    &nsnod[i][7]);
@@ -356,4 +357,11 @@ double L;
 L=sqrt(pow(x2-x1,2.)+pow(y2-y1,2.));
 *pL = L;
 return;
+}
+
+void chkf(char *str){
+   if( str == NULL){
+     printf("line not read\n");
+     exit(1);
+   }
 }                   

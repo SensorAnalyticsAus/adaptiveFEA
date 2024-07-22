@@ -71,6 +71,7 @@ int inv(int n, double A[][3]);
 void elem_area(int el_no,double *pA);
 void form_D(double v, double e, double d[][3]);
 char* trimwhitespace(char *str);
+void chkf(char *str);
 
 void main(int argc, char **argv)
 {
@@ -245,7 +246,7 @@ int i;
 double smax,smin;
 for(i = 0; i < ne; i++)
 {
-fgets(buf,256,fp3);
+chkf(fgets(buf,256,fp3));
 sscanf(buf,"%lf%lf%lf%lf%lf",&ste[3*i + 0],&ste[3*i + 1],&ste[3*i + 2],&smax,&smin);
 printf("%12.5e %12.5e %12.5e\n",ste[3*i + 0],ste[3*i + 1],ste[3*i + 2]);
 }
@@ -266,7 +267,7 @@ double x1,y1,z1;
 
 if(hmin_def == 0){
    printf("Enter the input file (.dat assumed)\n");   
-   fgets(buf_s,BUFF,stdin); 
+   chkf(fgets(buf_s,BUFF,stdin)); 
    strcpy(buf_s,trimwhitespace(buf_s));
 }
 
@@ -275,16 +276,16 @@ strcpy(buf, buf_s); strcat(buf,".dat");
   if((fp=fopen(buf,"r")) == (FILE *) NULL)
    {printf("cannot open %s\n",buf); exit(1);}
 
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    fputs(buf,stdout);
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%lf%lf",&dt,&damp);
    printf("%f %f \n",dt,damp);
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %d %d %d %d %d %d %d %d %d %d",&nn,&ne,&nb,&nm,&nl,
    &ndime, &nstr, &nbe, &kmax,&nmax, &iln);
 
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d",&nq);
 
 
@@ -297,7 +298,7 @@ strcpy(buf, buf_s); strcat(buf,".dat");
 
    for(i = 0; i < nn; i++)
    {
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %lf %lf %lf",&n, &x1, &y1,&z1);
    cord[3*i] = x1;
    cord[3*i + 1] = y1;
@@ -310,7 +311,7 @@ strcpy(buf, buf_s); strcat(buf,".dat");
    {
       for(i = 0; i < ne; i++)
       {
-      fgets(buf,256,fp);
+      chkf(fgets(buf,256,fp));
       sscanf(buf,"%d %d %d %d %d",&n,&nod[4*i + 0],&nod[4*i + 1],
       &nod[4*i + 2],&nod[4*i + 3]);
       }
@@ -322,7 +323,7 @@ strcpy(buf, buf_s); strcat(buf,".dat");
    {
       for(i = 0; i < nl;i++)
       {
-      fgets(buf,256,fp);
+      chkf(fgets(buf,256,fp));
       }
    }
 
@@ -332,7 +333,7 @@ strcpy(buf, buf_s); strcat(buf,".dat");
    {
       for(i = 0; i < nq; i++)
       {
-      fgets(buf,256,fp);
+      chkf(fgets(buf,256,fp));
       }
    }
 
@@ -340,7 +341,7 @@ strcpy(buf, buf_s); strcat(buf,".dat");
 
    for(i = 0; i < nm; i++)
    {
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %d %lf %lf %lf %lf %lf",&n,&mat[i],&amat[i][0],&amat[i][1],
    &amat[i][2],&amat[i][3],&amat[i][4]);
    }
@@ -349,7 +350,7 @@ strcpy(buf, buf_s); strcat(buf,".dat");
 
    for(i = 0; i < nb; i++)
    {
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %d %d %d",&nco[i][0],&nco[i][1],&nco[i][2],&nco[i][3]);
    }
 
@@ -362,7 +363,7 @@ more:
    iln++;
    i = iln - 1;
 
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
    sscanf(buf,"%d %lf %lf %lf",&nc[i],&aload[i][0],&aload[i][1],&aload[i][2]);
 
    if(nc[i] < nn)
@@ -373,8 +374,8 @@ more:
    {
    for(i = 0; i < nstr; i++)
    {
-   fgets(buf,256,fp);
-   fgets(buf,256,fp);
+   chkf(fgets(buf,256,fp));
+   chkf(fgets(buf,256,fp));
    }
    }
 }
@@ -675,7 +676,7 @@ if((he = (double *)calloc(ne, sizeof(double))) == NULL)
    fprintf(fp2," em = %f \n", em); 
 
    fprintf(fp2,"\n \n elem   ||e||i**2      ||u||i**2          exi      \
-      hi_bg          nita_i % \n");
+      hi_bg          nita_i %% \n");
    
    for(i =0 ; i < ne; i++)
    {
@@ -714,8 +715,8 @@ if((he = (double *)calloc(ne, sizeof(double))) == NULL)
 
 if(hmin_def == 0) {
   printf("Enter your own hmin \n");
-  fgets(buf,BUFF,stdin);
-  sscanf(buf,"%lf %lf", &hmin);
+  chkf(fgets(buf,BUFF,stdin));
+  sscanf(buf,"%lf", &hmin);
 } /* else hmin is defined in main() */
 
    mag = hmin/he_min;
@@ -963,4 +964,11 @@ char* trimwhitespace(char *str)
   end[1] = '\0';
 
   return str;
+}
+
+void chkf(char *str){
+   if( str == NULL){
+     printf("line not read\n");
+     exit(1);
+   }
 }

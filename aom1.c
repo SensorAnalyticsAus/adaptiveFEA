@@ -84,6 +84,7 @@ void  bound_send(void);
 void  magnify(void);   /* for small triangle sizes */
 void  demagnify(void); /* 5 April 96 */
 char* trimwhitespace(char *str); /*https://stackoverflow.com/a/122721/4106464*/
+void chkf(char *str);
 
 int main(int argc, char **argv)
 {
@@ -114,7 +115,7 @@ printf("***Node para are going to be used*** \n");
 
 if(argc != 4){
 printf("Enter the project file name (without extension)\n");
-fgets(buf,LINEBUFF,stdin);
+chkf(fgets(buf,LINEBUFF,stdin));
 strcpy(buf,trimwhitespace(buf));
 } else {
 strcpy(buf,argv[1]);
@@ -166,7 +167,7 @@ fclose(fp5);
 if(argc != 4){
 printf("Enter [1] if coarse background mesh is to be refined\n");
 /*gets(buf);*/
-fgets(buf,LINEBUFF,stdin);
+chkf(fgets(buf,LINEBUFF,stdin));
 sscanf(buf,"%d",&meshsel);
 } else {
 meshsel = 1;
@@ -174,7 +175,7 @@ meshsel = 1;
 
 if(argc != 4) {
 printf("Enter [1] if mesh post-processing required\n");
-fgets(buf,LINEBUFF,stdin);
+chkf(fgets(buf,LINEBUFF,stdin));
 sscanf(buf,"%d",&pos); 
 } else {
 pos =  1;
@@ -362,7 +363,7 @@ void openfile1(void)
 {
 if(name != 1){
 printf("Enter the mesh file\n");
-fgets(buf,LINEBUFF,stdin);
+chkf(fgets(buf,LINEBUFF,stdin));
 sscanf(buf,"%s",nout1);
 fp5=fopen(nout1,"r");
 	if(fp5==(FILE *)NULL)
@@ -442,25 +443,25 @@ int i,n;
 double val,x1,y1,z1;
 
 
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    fputs(buf,stdout);
    fputs(buf,fp0);
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%lf%lf",&dt,&damp);
    printf("%f %f \n",dt,damp);
    fprintf(fp0,"%10.5f%10.5f\n",dt,damp);
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %d %d %d %d %d %d %d %d %d",&nn,&ne,&nb,&nm,&nl,
    &ndime, &nstr, &nbe, &kmax,&nmax, &iln);
 
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d",&nq);
 
 
 
    for(i = 0; i < nn; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %lf %lf %lf",&n, &x1, &y1,&z1);
    val = cord[3*i] = x1;
    val = cord[3*i + 1] = y1;
@@ -473,7 +474,7 @@ double val,x1,y1,z1;
    {
       for(i = 0; i < ne; i++)
       {
-      fgets(buf,BUFF,fp1);
+      chkf(fgets(buf,BUFF,fp1));
       sscanf(buf,"%d %d %d %d %d",&n,&nod[i][0],&nod[i][1],
       &nod[i][2],&nod[i][3]);
       }
@@ -485,7 +486,7 @@ double val,x1,y1,z1;
    {
       for(i = 0; i < nl;i++)
       {
-      fgets(buf,BUFF,fp1);
+      chkf(fgets(buf,BUFF,fp1));
       sscanf(buf,"%d %d %d %d",&n,&nodl[i][0],&nodl[i][1],
       &nodl[i][2]);
       }
@@ -497,7 +498,7 @@ double val,x1,y1,z1;
    {
       for(i = 0; i < nq; i++)
       {
-      fgets(buf,BUFF,fp1);
+      chkf(fgets(buf,BUFF,fp1));
       sscanf(buf,"%d %d %d %d %d %d",&n,&nodq[i][0],&nodq[i][1],
       &nodq[i][2],&nodq[i][3],&nodq[i][4]);
       }
@@ -507,7 +508,7 @@ double val,x1,y1,z1;
 
    for(i = 0; i < nm; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %lf %lf %lf %lf %lf",&n,&mat[i],&amat[i][0],&amat[i][1],
    &amat[i][2],&amat[i][3],&amat[i][4]);
    }
@@ -516,7 +517,7 @@ double val,x1,y1,z1;
 
    for(i = 0; i < nb; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %d %d",&nco[i][0],&nco[i][1],&nco[i][2],&nco[i][3]);
    }
 
@@ -529,7 +530,7 @@ more:
    iln++;
    i = iln - 1;
 
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %lf %lf %lf",&nc[i],&aload[i][0],&aload[i][1],&aload[i][2]);
 
    if(nc[i] < nn)
@@ -540,9 +541,9 @@ more:
    {
    for(i = 0; i < nstr; i++)
    {
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d",&ngs[i]);
-   fgets(buf,BUFF,fp1);
+   chkf(fgets(buf,BUFF,fp1));
    sscanf(buf,"%d %d %d %d %d %d %d %d",&nsnod[i][0],&nsnod[i][1],
    &nsnod[i][2],&nsnod[i][3],&nsnod[i][4],&nsnod[i][5],&nsnod[i][6],
    &nsnod[i][7]);
@@ -1666,7 +1667,7 @@ int dum;
 
    for(i = 0; i < nn; i++)
    {
-   fgets(buf,BUFF,fp5);
+   chkf(fgets(buf,BUFF,fp5));
    if(buf[0] == '!') continue;
    sscanf(buf,"%d  %lf",&dum, &hhi[i]);
    printf("%3d    %f\n",i+1, hhi[i]);
@@ -1681,7 +1682,7 @@ int i,j,k;
 
   
    for(i = 0; i < ne; i++)      /* read in *.me */
-   {fgets(buf,BUFF,fp5); sscanf(buf,"%d %lf", &j, &hi[i]);}
+   {chkf(fgets(buf,BUFF,fp5)); sscanf(buf,"%d %lf", &j, &hi[i]);}
 
    search_node();
 
@@ -1800,4 +1801,11 @@ char* trimwhitespace(char *str)
   end[1] = '\0';
 
   return str;
+}
+
+void chkf(char *str){
+   if( str == NULL){
+     printf("line not read\n");
+     exit(1);
+   }
 }
