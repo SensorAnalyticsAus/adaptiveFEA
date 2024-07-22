@@ -22,7 +22,7 @@ OBJS3 = aom1.o aow1.o
 HEADERS3 = incl.c inclx.c
 
 
-$(PROGRAM) : $(PROGRAM2) $(OBJS)
+$(PROGRAM) : $(OBJS)
 	$(CC) $(OBJS) $(LDLIBS) -o $(PROGRAM) 
 
 $(PROGRAM2) : $(OBJS2)
