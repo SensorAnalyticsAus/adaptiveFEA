@@ -249,5 +249,6 @@ If **faopgs2**, **femgs1**, or **plotp** fail.
 Full explanation of the adaptive technique can be found in Chapter 5 of Topping and Khan [1]. A version of this technique is also in Khan and Topping [2].
 ## References
 [[1](https://www.saxe-coburg.co.uk/pubs/descrip/btak.htm)]: PARALLEL FINITE ELEMENT COMPUTATIONS B.H.V. Topping and A.I. Khan - Chapter 5
+
 [[2](/assets/pdf/pmesh.pdf)]: AI Khan, BHV Topping, Parallel adaptive mesh generation.Computing systems in Engineering 2 (1), 75-101
 
