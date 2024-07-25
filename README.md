@@ -246,7 +246,7 @@ If **faopgs2**, **femgs1**, or **plotp** fail.
 * Check **dot-dat** file is conforming to the expected format.
 * Try increasing the `hmin` value in **adpgs1** to reduce the number of elements in final mesh.
 ## Remarks
-Full explanation of the adaptive technique can be found in Chapter 5 of Topping and Khan [1]. A version of this technique is also in Khan and Topping [2].
+Full explanation of the adaptive technique can be found in Chapter 5 of Topping and Khan [1]. An earlier version; Khan and Topping [2].
 ## References
 [[1](https://www.saxe-coburg.co.uk/pubs/descrip/btak.htm)]: BHV Topping and AI Khan, PARALLEL FINITE ELEMENT COMPUTATIONS - Chapter 5, Saxe-Coburg Publications
 
